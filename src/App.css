@@ -2,12 +2,12 @@
 
 * {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
   scroll-behavior: smooth;
 }
 
 body {
+  margin: 0;
+  padding: 0;
   font-family: "Noto Sans", sans-serif;
 }
 
@@ -24,7 +24,120 @@ img {
 }
 
 .container {
-  margin: 0 10%;
-  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: 1fr auto;
+  grid-template-areas:
+    "image sidebar"
+    "slider sidebar";
+  height: 100vh;
+  width: 100vw;
+  background-color: rgb(241, 241, 241);
+}
+
+.image {
+  grid-area: image;
+  background-image: url("https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80");
+  width: 100%;
   height: 100%;
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-top: 1rem;
+}
+
+.sidebar {
+  grid-area: sidebar;
+  background-color: rgb(53, 53, 230);
+  border-left: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.sidebar-item {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background-color: rgb(53, 53, 230);
+  font-size: 1.5em;
+  color: white;
+  padding: 1rem;
+  position: relative;
+  transition: 150ms;
+}
+
+.sidebar-item.active {
+  background-color: rgb(29, 29, 126);
+}
+
+.sidebar-item:hover,
+.sidebar-item:focus {
+  background-color: rgb(37, 37, 163);
+}
+
+.sidebar-item::after {
+  content: "";
+  position: absolute;
+  width: 80%;
+  left: 10%;
+  bottom: 0;
+  height: 1px;
+  background-color: white;
+}
+
+.sidebar-item:last-child::after {
+  display: none;
+}
+
+.slider-container {
+  grid-area: slider;
+  margin-top: 1rem;
+  padding: 2rem;
+}
+
+.slider {
+  width: 100%;
+  cursor: pointer;
+}
+
+.slider-values {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media (max-width: 991.98px) {
+  .container {
+    grid-template-areas:
+      "image"
+      "slider"
+      "sidebar";
+  }
+
+  .image {
+    margin: 0;
+  }
+
+  .slider-container {
+    margin-top: 0.3rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .sidebar {
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+  .sidebar-item {
+    font-size: 1em;
+    padding: 1rem 0.5rem;
+  }
+
+  .sidebar-item::after {
+    content: "";
+    position: absolute;
+    height: 0;
+    width: 0;
+  }
 }
