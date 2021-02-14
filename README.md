@@ -11,5 +11,10 @@ Supports:
   - Blur
 
 ---
+Running:
+
+![Running](imageFilterCombined.jpg "running")
+
+---
 
 # https://romanj55.github.io/imagefilter/
